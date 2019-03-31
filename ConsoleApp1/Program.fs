@@ -12,28 +12,35 @@ type Card = Rank * Suit
 
 type Deck = Card list
 
+let ranks = [ Two ; Three ; Four ; Five ; Six ; Seven ; Eight; 
+              Nine ; Ten ; Jack ; Queen ; King ; Ace ]
+
+let suits = [ Clubs; Diamonds;  Spades; Hearts ]
 
 let createDeck () =
-    let ranks = [ Two ; Three ; Four ; Five ; Six ; Seven ; Eight; 
-                  Nine ; Ten ; Jack ; Queen ; King ; Ace ]
-    let suits = [ Clubs; Diamonds;  Spades; Hearts ]
-    
     let mutable cardList = []
 
     for rank in ranks do 
         for suit in suits do 
-            cardList <-  cardList @ [ Card(rank, suit) ]
+            cardList <-  cardList @ [ rank, suit ]
 
     cardList
 
+let createDeck' () =
+    [ for r in ranks do
+      for s in suits do
+        yield r, s ]
+
+let makeRandomString () = Guid.NewGuid().ToString()
+
 let sortDeck (deck: Deck) = 
-    List.sortBy (fun _ -> Guid.NewGuid().ToString()) deck
+    List.sortBy (fun _ -> makeRandomString()) deck
 
 
 [<EntryPoint>]
 let main argv =
     let mutable count = 0 
-    let deck = createDeck() |> sortDeck
+    let deck = createDeck'() |> sortDeck
     for card in deck do 
         count <- count + 1
         let rank, suit = card
