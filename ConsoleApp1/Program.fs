@@ -36,15 +36,11 @@ let makeRandomString () = Guid.NewGuid().ToString()
 let sortDeck (deck: Deck) = 
     List.sortBy (fun _ -> makeRandomString()) deck
 
+let printDeck deck =
+    deck |> List.iteri (fun i (r, s) -> printfn "%d - %A %A " (i + 1) r s)
 
 [<EntryPoint>]
 let main argv =
-    let mutable count = 0 
-    let deck = createDeck'() |> sortDeck
-    for card in deck do 
-        count <- count + 1
-        let rank, suit = card
-        printfn "%d - %A %A " count rank suit
-
+    createDeck'() |> sortDeck |> printDeck
     Console.ReadLine()|> ignore
     0 // return an integer exit code
