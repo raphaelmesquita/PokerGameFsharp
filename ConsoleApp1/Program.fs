@@ -1,7 +1,4 @@
-﻿// Learn more about F# at http://fsharp.org
-
-open System
-
+﻿open System
 
 type Rank = Two | Three | Four | Five | Six | Seven | Eight 
             | Nine | Ten | Jack | Queen | King | Ace
@@ -19,11 +16,9 @@ let suits = [ Clubs; Diamonds;  Spades; Hearts ]
 
 let createDeck () =
     let mutable cardList = []
-
     for rank in ranks do 
         for suit in suits do 
-            cardList <-  cardList @ [ rank, suit ]
-
+            cardList <- cardList @ [ rank, suit ]
     cardList
 
 let createDeck' () =
