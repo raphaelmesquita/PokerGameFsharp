@@ -28,7 +28,7 @@ let createDeck' () =
 
 let makeRandomString () = Guid.NewGuid().ToString()
 
-let sortDeck (deck: Deck) = 
+let shuffleDeck (deck: Deck) = 
     List.sortBy (fun _ -> makeRandomString()) deck
 
 let printDeck deck =
@@ -36,6 +36,6 @@ let printDeck deck =
 
 [<EntryPoint>]
 let main argv =
-    createDeck'() |> sortDeck |> printDeck
+    createDeck'() |> shuffleDeck |> printDeck
     Console.ReadLine()|> ignore
     0 // return an integer exit code
