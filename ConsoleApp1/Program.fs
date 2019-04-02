@@ -21,10 +21,8 @@ let createDeck () =
             cardList <- cardList @ [ rank, suit ]
     cardList
 
-let createDeck' () =
-    [ for r in ranks do
-      for s in suits do
-        yield r, s ]
+let createDeck' () = [ for r in ranks do
+                       for s in suits -> r, s ]
 
 let makeRandomString () = Guid.NewGuid().ToString()
 
